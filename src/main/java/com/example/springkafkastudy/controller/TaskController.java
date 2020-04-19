@@ -1,6 +1,6 @@
 package com.example.springkafkastudy.controller;
 
-import com.example.springkafkastudy.model.entity.Task;
+import com.example.springkafkastudy.model.dto.TaskDto;
 import com.example.springkafkastudy.service.TaskService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,7 +20,7 @@ public class TaskController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    public Mono<Void> create(@RequestBody Mono<Task> task) {
+    public Mono<Void> create(@RequestBody Mono<TaskDto> task) {
         return task.publishOn(Schedulers.elastic())
                 .map(taskService::create)
                 .then();

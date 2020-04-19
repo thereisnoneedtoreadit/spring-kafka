@@ -1,12 +1,13 @@
 package com.example.springkafkastudy.service;
 
-import com.example.springkafkastudy.model.entity.Task;
+import com.example.springkafkastudy.model.dto.TaskDto;
 import org.springframework.stereotype.Service;
 
 @Service
 public class TaskService {
 
-    public Task create(Task task) {
-        return null;
+    public TaskDto create(TaskDto task) {
+        return task;
     }
+
 }
