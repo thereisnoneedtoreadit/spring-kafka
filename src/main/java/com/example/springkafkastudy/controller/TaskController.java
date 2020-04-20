@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
-import reactor.core.scheduler.Schedulers;
 
 @RestController
 @RequestMapping(value = "/tasks", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -22,10 +21,11 @@ public class TaskController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    public Mono<TaskDto> create(@RequestBody Mono<TaskDto> task) {
-        log.debug("Received request for task creating");
-        return task.publishOn(Schedulers.elastic())
-                .map(taskService::create).doOnNext(Mono::just);
+    public Mono<TaskDto> createTask(@RequestBody Mono<TaskDto> task) {
+        return task.map(taskDto -> {
+            taskService.createTask(taskDto);
+            return taskDto;
+        });
     }
 
 }
