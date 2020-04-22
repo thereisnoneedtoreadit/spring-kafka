@@ -23,7 +23,7 @@ public class TaskController {
     @ResponseStatus(HttpStatus.OK)
     public Mono<TaskDto> createTask(@RequestBody Mono<TaskDto> task) {
         return task.map(taskDto -> {
-            taskService.createTask(taskDto);
+            taskService.sendTaskToKafka(taskDto);
             return taskDto;
         });
     }
