@@ -1,24 +1,24 @@
-package com.example.springkafkastudy.model.dto;
+package com.example.springkafkastudy.model.entity;
 
-import com.example.springkafkastudy.model.entity.Task;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.Instant;
 import java.util.UUID;
 
+@Document
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TaskDto {
+public class Task {
 
+    @Id
+    private UUID id;
     private String name;
     private String description;
     private Instant time;
-
-    public Task asEntity() {
-        return new Task(UUID.randomUUID(), this.name, this.description, this.time);
-    }
 
 }
