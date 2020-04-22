@@ -13,11 +13,9 @@ import org.springframework.stereotype.Service;
 public class TaskService {
 
     private final TaskProducer taskProducer;
-    private final TaskSerializer serializer;
 
-    public TaskService(TaskProducer taskProducer, TaskSerializer serializer) {
+    public TaskService(TaskProducer taskProducer) {
         this.taskProducer = taskProducer;
-        this.serializer = serializer;
     }
 
     public void sendTaskToKafka(TaskDto taskDto) {
