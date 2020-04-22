@@ -1,4 +1,21 @@
 # Сервис, созданный для изучения Apache Kafka. 
 
-Сервис состоит из webflux контроллера, который передает данные в producer, которые producer шлет в нужный топик,
-и consumer'а, который получает эти данные и сохраняет их в Mongo. 
+Стек:
+java 11
+spring-webflux
+apache kafka 2.4.5
+mongo db
+
+Тело запроса:
+{
+	"name":"name",
+	"description":"description",
+	"time":"1587304603494"
+}
+
+Логика:
+1.Прием запроса на /tasks (POST)
+2.Отправка объекта в kafka
+3.Прием того же объекта из kafka
+4.Сохранение объекта в mongo
+
